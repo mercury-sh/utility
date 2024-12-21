@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../Mercury.PowerShell.Targets.props"/>
+  <Import Project="../../Mercury.PowerShell.Configuration.props"/>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <Authors>Bruno Sales</Authors>
+    <Description>Utilities for Mercury.PowerShell modules.</Description>
+    <Copyright>Copyright (c) 2024 Bruno Sales &lt;me@baliestri.dev&gt;</Copyright>
+    <Company>baliestri</Company>
+    <PackageId>Mercury.PowerShell.Utility</PackageId>
+    <PackageProjectUrl>https://github.com/mercury-sh/utility</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/mercury-sh/utility.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>powershell;utility;mercury</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System.Management.Automation"/>
+    <Using Include="System.Management.Automation.Language"/>
+
+    <InternalsVisibleTo Include="$(AssemblyName).UnitTesting"/>
+    <InternalsVisibleTo Include="$(AssemblyName).EndToEndTesting"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management.Automation" Version="7.4.6"/>
+  </ItemGroup>
+
+</Project>
