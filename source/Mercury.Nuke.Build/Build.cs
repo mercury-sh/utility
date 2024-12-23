@@ -1,4 +1,3 @@
-using System;
 using LibGit2Sharp;
 using Nuke.Common;
 using Nuke.Common.IO;
@@ -30,23 +29,8 @@ class Build : NukeBuild {
       PublishPath.CreateOrCleanDirectory();
     });
 
-  Target ContinueIfMainBranch => _ => _
-    .DependsOn(Clean)
-    .Executes(() => {
-      var isOnMainBranch = Repository.Head.FriendlyName == "main";
-
-      if (isOnMainBranch) {
-        Log.Information("On main branch. Continuing...");
-
-        return;
-      }
-
-      Log.Error("Not on main branch. Aborting...");
-      Environment.Exit(1);
-    });
-
   Target Restore => _ => _
-    .DependsOn(ContinueIfMainBranch)
+    .DependsOn(Clean)
     .Executes(() => {
       Log.Information("Restoring packages...");
 
