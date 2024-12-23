@@ -1,0 +1,27 @@
+name: Nuke Build
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Publish NuGet Package
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Publish NuGet Package
+        run: |
+          # .\build.sh --configuration Release --nuget-api-key ${{ secrets.NUGET_API_KEY }} --nuget-source https://api.nuget.org/v3/index.json # Solving the issue of package prefix
+          .\build.sh --configuration Release --nuget-api-key ${{ secrets.GITHUB_TOKEN }} --nuget-source https://nuget.pkg.github.com/mercury-sh/index.json
