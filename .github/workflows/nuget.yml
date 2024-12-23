@@ -1,0 +1,36 @@
+name: NuGet Package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Publish NuGet Package
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Test Project
+        run: dotnet test --no-restore --verbosity normal
+
+      - name: Build and Pack NuGet Package
+        run: |
+          cd source/Mercury.PowerShell.Utility
+          dotnet pack --configuration Release --output ../../artifacts
+
+      - name: Publish NuGet Package
+        run: |
+          cd artifacts
+          dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
