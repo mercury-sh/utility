@@ -18,6 +18,9 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Restore NuGet Packages
+        run: dotnet restore
+
       - name: Test Project
         run: dotnet test --no-restore --verbosity normal
 
