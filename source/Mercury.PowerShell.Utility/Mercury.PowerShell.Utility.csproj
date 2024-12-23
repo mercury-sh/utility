@@ -27,6 +27,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\..\LICENSE.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="System.Management.Automation"/>
     <Using Include="System.Management.Automation.Language"/>
 
