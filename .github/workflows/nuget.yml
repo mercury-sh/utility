@@ -32,4 +32,5 @@ jobs:
       - name: Publish NuGet Package
         run: |
           cd artifacts
-          dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          # dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json # Solving the issue of package prefix
+          dotnet nuget push *.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/mercury-sh/index.json
