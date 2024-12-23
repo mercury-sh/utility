@@ -23,5 +23,5 @@ jobs:
 
       - name: Publish NuGet Package
         run: |
-          # .\build.sh --configuration Release --nuget-api-key ${{ secrets.NUGET_API_KEY }} --nuget-source https://api.nuget.org/v3/index.json # Solving the issue of package prefix
-          .\build.sh --configuration Release --nuget-api-key ${{ secrets.GITHUB_TOKEN }} --nuget-source https://nuget.pkg.github.com/mercury-sh/index.json
+          # ./build.sh --configuration Release --nuget-api-key ${{ secrets.NUGET_API_KEY }} --nuget-source https://api.nuget.org/v3/index.json # Solving the issue of package prefix
+          ./build.sh --configuration --nuget-api-key ${{ secrets.GITHUB_TOKEN }} --nuget-source https://nuget.pkg.github.com/mercury-sh/index.json
