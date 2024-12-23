@@ -27,6 +27,16 @@ public sealed class AbsolutePath : IEquatable<AbsolutePath> {
     => _fsPath = NormalizePath(path);
 
   /// <summary>
+  ///   Methods for file operations.
+  /// </summary>
+  public FileAbsolutePath File => new(this);
+
+  /// <summary>
+  ///   Methods for directory operations.
+  /// </summary>
+  public DirectoryAbsolutePath Directory => new(this);
+
+  /// <summary>
   ///   Returns the name of the file or directory.
   /// </summary>
   public string Name => Path.GetFileName(_fsPath);
